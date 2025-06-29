@@ -4,20 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact - D&D Nails</title>
-  <link href="contacts.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.23/bundled/lenis.min.js"></script>
+  <link href = "contacts.css" rel="stylesheet">
 </head>
 <body>
 
 <header>
-  <a href="index.html" class="logo shine">D&amp;D Nails</a>
+  <a href="index.html" class="logo-link">D&amp;D Nails</a>
   <nav>
-    <a href="index.html" class="btn">Home</a>
-    <a href="reviews.html" class="btn">Reviews</a>
+    <a href="reviews.html" style="color:#FFD700; font-weight: 700;">Reviews</a>
   </nav>
 </header>
 
 <main>
-  <h1 class="title">Get In Touch</h1>
+  <h1 style="color:#FFD700; font-size:2rem; margin-bottom:1rem;">Get In Touch</h1>
 
   <div class="contact-item">
     📞 Phone: <a href="tel:+1234567890">+1 (234) 567-890</a>
@@ -38,10 +39,17 @@
 </main>
 
 <script>
-  const theme = localStorage.getItem('theme');
-  if (theme === 'light') {
-    document.body.classList.add('light');
+  const lenis = new Lenis({
+    lerp: 0.15,
+    smoothWheel: true,
+    wheelMultiplier: 0.7,
+    smoothTouch: true,
+  });
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
   }
+  requestAnimationFrame(raf);
 </script>
 
 </body>
