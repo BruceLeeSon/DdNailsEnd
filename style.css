@@ -15,7 +15,7 @@ body {
   background: var(--bg);
   color: var(--text-color);
   scroll-behavior: smooth;
-  transition: background 0.4s, color 0.4s;
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
 body.light {
@@ -96,7 +96,7 @@ nav a:focus {
     transparent 100%
   );
   transform: skewX(-20deg);
-  animation: shine 2s linear infinite;
+  animation: shine 2.5s linear infinite;
   pointer-events: none;
   z-index: 1;
 }
@@ -187,67 +187,97 @@ nav a:focus {
   color: var(--text-color);
 }
 
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.gallery-img {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-  cursor: default;
-  object-fit: cover;
-  height: 200px;
-}
-
-.gallery-img:hover {
-  transform: scale(1.05);
-}
-
-.footer {
-  text-align: center;
-  padding: 2rem 1rem;
+/* Модальное окно */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  max-width: 90vw;
+  max-height: 90vh;
   background: var(--card-bg);
   color: var(--text-color);
-  transition: color 0.4s, background 0.4s;
-}
-
-.fade {
+  border-radius: 1rem;
+  padding: 1.5rem 2rem 2rem 2rem;
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.9);
+  transform: translate(-50%, -50%) scale(0);
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  overflow-y: auto;
+  z-index: 1000;
 }
 
-.fade.visible {
+.popup.open {
+  transform: translate(-50%, -50%) scale(1);
   opacity: 1;
-  transform: translateY(0);
+  pointer-events: auto;
 }
 
+.popup-content img {
+  max-width: 100%;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  object-fit: contain;
+}
+
+/* Кнопка закрытия */
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 28px;
+  height: 28px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  border: none;
+  font-weight: 900;
+  color: var(--card-bg-light);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px var(--accent-color);
+  transition: background 0.3s ease;
+  user-select: none;
+  z-index: 10;
+}
+
+.close-btn:hover {
+  background: #ff4444;
+  box-shadow: 0 0 14px #ff4444;
+}
+
+body.dark .close-btn {
+  color: var(--card-bg-dark);
+}
+
+/* Кнопка переключения темы */
 .theme-toggle {
   position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  background: var(--button-bg);
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background-color: var(--button-bg);
   color: var(--button-text);
-  border: none;
-  font-size: 1.5rem;
-  padding: 0.7rem 1.2rem;
+  padding: 0.75rem 1.25rem;
   border-radius: 50px;
+  border: none;
   cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+  font-size: 1.4rem;
   font-weight: 700;
-  z-index: 100;
-  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.7);
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: pulse 3s infinite ease-in-out;
+  z-index: 9999;
 }
 
 .theme-toggle:hover {
-  box-shadow: 0 0 18px var(--accent-color);
+  background-color: var(--button-hover-bg);
   transform: scale(1.1);
 }
 
@@ -256,82 +286,16 @@ nav a:focus {
   50% { box-shadow: 0 0 30px var(--accent-color); }
 }
 
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(15, 15, 15, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 999;
-}
-
-.popup:not(.hidden) {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.popup-content {
-  background: var(--card-bg);
-  color: var(--text-color);
-  padding: 2rem;
-  border-radius: 16px;
-  max-width: 500px;
-  width: 90%;
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.9);
-  transform: scale(0.9);
-  animation: popupFade 0.3s ease forwards;
-  position: relative;
-  overflow-y: auto;
-  max-height: 80vh;
-  text-align: center;
-}
-
-.popup-content img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 14px;
-  margin-bottom: 1rem;
-  object-fit: contain;
-}
-
-@keyframes popupFade {
-  to {
-    transform: scale(1);
-  }
-}
-
-.close-btn {
-  position: absolute;
-  top: 0.5rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  font-size: 1.6rem;
-  color: var(--accent-color);
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-.close-btn:hover {
-  color: #ff4444;
-}
-
-.hidden {
-  display: none;
-}
-
+/* Скроллбар */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--accent-color);
   border-radius: 8px;
@@ -366,14 +330,18 @@ nav a:focus {
   }
   .cards {
     gap: 1rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
   }
   .card {
-    max-width: 100%;
-    flex: 1 1 100%;
+    max-width: 280px;
+    flex: 0 0 auto;
     padding: 1rem;
   }
   .gallery-img {
-    max-width: 100%;
+    max-width: 280px;
     height: 150px;
   }
 }

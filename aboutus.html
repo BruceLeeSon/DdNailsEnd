@@ -5,25 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About Us - D&D Nails</title>
   <link href="style.css" rel="stylesheet" />
-  <style>
-    /* Немного увеличим размер заголовка и текста */
-    .heading {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--text-primary);
-    }
-    .text {
-      font-size: 1.25rem;
-      line-height: 1.75rem;
-      max-width: 900px;
-      margin: 0 auto 2rem;
-      color: var(--text-secondary);
-      text-align: justify;
-    }
-    main.section {
-      padding: 3rem 1rem 4rem;
-    }
-  </style>
+  <link href="aboutus.css" rel="stylesheet" />
 </head>
 <body id="top">
 
@@ -65,15 +47,17 @@
   </footer>
 
 <script>
+  // Год в футере
   document.querySelector('[data-copyright-year]').textContent = new Date().getFullYear();
 
+  // Тема
   const body = document.body;
   function applyTheme(theme) {
-    if(theme === 'light') body.classList.add('light');
-    else body.classList.remove('light');
+    if(theme === 'dark') body.classList.add('dark');
+    else body.classList.remove('dark');
   }
   function loadTheme() {
-    return localStorage.getItem('theme') || 'dark';
+    return localStorage.getItem('theme') || 'light';
   }
   applyTheme(loadTheme());
 </script>

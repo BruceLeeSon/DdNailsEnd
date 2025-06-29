@@ -6,38 +6,36 @@
   <title>D&D Nails</title>
   <link href="style.css" rel="stylesheet" />
 </head>
-<body id="top" class="light">
+<body id="top">
 
   <header>
     <a href="#top" class="logo">D&amp;D Nails</a>
     <nav>
-      <a href="contacts.html" class="btn-link">Contact</a>
-      <a href="reviews.html" class="btn-link">Reviews</a>
-      <a href="aboutus.html" class="btn-link">About Us</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contacts.html">Contact</a>
     </nav>
   </header>
 
-  <section class="intro fade">
-    <h2 class="title fade">Elegance at Your Fingertips</h2>
-    <p class="subtitle fade">
-      Step into sophistication. Let your nails reflect your bold beauty with D&D Nails.
-    </p>
+  <section class="intro">
+    <h2 class="title">Elegance at Your Fingertips</h2>
+    <p class="subtitle">Step into sophistication. Let your nails reflect your bold beauty with D&D Nails.</p>
   </section>
 
-  <section id="services" class="section fade">
-    <h3 class="heading fade">Our Services</h3>
+  <section id="services" class="section">
+    <h3 class="heading">Our Services</h3>
     <div class="cards">
-      <div class="card fade" data-title="Luxury Manicure" data-text="Revitalize your hands with premium polishes, massage, and art." data-img="https://s0.rbk.ru/v6_top_pics/media/img/4/23/756252253873234.jpg">
+      <div class="card" tabindex="0" data-img="https://s0.rbk.ru/v6_top_pics/media/img/4/23/756252253873234.jpg" data-title="Luxury Manicure" data-text="Revitalize your hands with premium polishes, massage, and art.">
         <img src="https://s0.rbk.ru/v6_top_pics/media/img/4/23/756252253873234.jpg" alt="Luxury Manicure" class="image" />
         <h4 class="card-title">Luxury Manicure</h4>
         <p class="text">Revitalize your hands with premium polishes, massage, and art.</p>
       </div>
-      <div class="card fade" data-title="Deluxe Pedicure" data-text="Indulge your feet in our signature pedicure with golden oils." data-img="https://i.pinimg.com/originals/0c/e1/4e/0ce14e259197763cb8701a92afdc4eee.jpg">
+      <div class="card" tabindex="0" data-img="https://i.pinimg.com/originals/0c/e1/4e/0ce14e259197763cb8701a92afdc4eee.jpg" data-title="Deluxe Pedicure" data-text="Indulge your feet in our signature pedicure with golden oils.">
         <img src="https://i.pinimg.com/originals/0c/e1/4e/0ce14e259197763cb8701a92afdc4eee.jpg" alt="Deluxe Pedicure" class="image" />
         <h4 class="card-title">Deluxe Pedicure</h4>
         <p class="text">Indulge your feet in our signature pedicure with golden oils.</p>
       </div>
-      <div class="card fade" data-title="Waxing" data-text="Smooth and confident with gentle waxing services in a soothing environment." data-img="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/6fde5e35202673.5713a5df069be.png">
+      <div class="card" tabindex="0" data-img="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/6fde5e35202673.5713a5df069be.png" data-title="Waxing" data-text="Smooth and confident with gentle waxing services in a soothing environment.">
         <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/6fde5e35202673.5713a5df069be.png" alt="Waxing" class="image" />
         <h4 class="card-title">Waxing</h4>
         <p class="text">Smooth and confident with gentle waxing services in a soothing environment.</p>
@@ -45,8 +43,8 @@
     </div>
   </section>
 
-  <section id="gallery" class="section fade">
-    <h3 class="heading fade">Gallery</h3>
+  <section id="gallery" class="section">
+    <h3 class="heading">Gallery</h3>
     <div class="gallery">
       <img src="https://images.unsplash.com/photo-1624223411222-fb56cbac0b1e?auto=format&fit=crop&w=400&q=80" alt="Gallery image 1" class="gallery-img" />
       <img src="https://images.unsplash.com/photo-1607082349566-c033c7b2d3f4?auto=format&fit=crop&w=400&q=80" alt="Gallery image 2" class="gallery-img" />
@@ -54,98 +52,103 @@
     </div>
   </section>
 
-  <footer class="footer fade">
-    <p>© <span data-copyright-year></span> D&D Nails. All rights reserved.</p>
+  <footer class="footer">
+    <p>© <span data-copyright-year></span> D&amp;D Nails. All rights reserved.</p>
   </footer>
 
-  <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
-
-  <!-- Попап для карточек -->
-  <div class="popup hidden" id="popup">
-    <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="popup-title">
-      <button class="close-btn" aria-label="Close popup">&times;</button>
+  <!-- Модальное окно для карточек -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <button class="close-btn" id="popup-close" aria-label="Close modal">&times;</button>
+      <img src="" alt="" id="popup-img" />
       <h4 id="popup-title"></h4>
-      <img alt="" />
-      <p></p>
+      <p id="popup-text"></p>
     </div>
   </div>
 
+  <!-- Кнопка переключения темы -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark theme">🌙</button>
+
   <script>
-    // Intersection observer для плавного появления
-    const faders = document.querySelectorAll('.fade');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-    faders.forEach(fader => observer.observe(fader));
-
-    // Установка года в футере
-    document.querySelector('[data-copyright-year]').textContent = new Date().getFullYear();
-
-    // Темы
-    const themeToggle = document.querySelector('.theme-toggle');
+    // Переключение темы с сохранением в localStorage
+    const themeToggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
+
     function setTheme(theme) {
-      if (theme === 'dark') {
-        body.classList.remove('light');
-        themeToggle.textContent = '🌞';
-      } else {
+      if(theme === 'light') {
         body.classList.add('light');
-        themeToggle.textContent = '🌙';
+        themeToggleBtn.textContent = '🌙';
+      } else {
+        body.classList.remove('light');
+        themeToggleBtn.textContent = '☀️';
       }
       localStorage.setItem('theme', theme);
     }
-    // Загрузка темы
-    let savedTheme = localStorage.getItem('theme') || 'light';
+
+    // Инициализация темы
+    const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
 
-    themeToggle.addEventListener('click', () => {
+    themeToggleBtn.addEventListener('click', () => {
       const currentTheme = body.classList.contains('light') ? 'light' : 'dark';
-      setTheme(currentTheme === 'light' ? 'dark' : 'light');
+      if(currentTheme === 'light') {
+        setTheme('dark');
+      } else {
+        setTheme('light');
+      }
     });
 
-    // Попап карточки
+    // Модалка для карточек
     const popup = document.getElementById('popup');
-    const popupTitle = popup.querySelector('h4');
-    const popupImg = popup.querySelector('img');
-    const popupText = popup.querySelector('p');
-    const closeBtn = popup.querySelector('.close-btn');
+    const popupClose = document.getElementById('popup-close');
+    const popupImg = document.getElementById('popup-img');
+    const popupTitle = document.getElementById('popup-title');
+    const popupText = document.getElementById('popup-text');
 
+    function openPopup(imgSrc, title, text) {
+      popupImg.src = imgSrc;
+      popupImg.alt = title;
+      popupTitle.textContent = title;
+      popupText.textContent = text;
+      popup.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePopup() {
+      popup.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Открываем модалку по клику на карточку
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('click', () => {
-        popupTitle.textContent = card.dataset.title;
-        popupText.textContent = card.dataset.text;
-        popupImg.src = card.dataset.img;
-        popupImg.alt = card.dataset.title;
-        popup.classList.remove('hidden');
+        openPopup(
+          card.dataset.img,
+          card.dataset.title,
+          card.dataset.text
+        );
+      });
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openPopup(
+            card.dataset.img,
+            card.dataset.title,
+            card.dataset.text
+          );
+        }
       });
     });
 
-    closeBtn.addEventListener('click', () => {
-      popup.classList.add('hidden');
-      popupImg.src = '';
-      popupTitle.textContent = '';
-      popupText.textContent = '';
-    });
-
-    // Закрытие по клику вне контента
+    popupClose.addEventListener('click', closePopup);
     popup.addEventListener('click', e => {
-      if (e.target === popup) {
-        closeBtn.click();
+      if(e.target === popup) {
+        closePopup();
       }
     });
 
-    // Закрытие по ESC
-    document.addEventListener('keydown', e => {
-      if(e.key === 'Escape' && !popup.classList.contains('hidden')){
-        closeBtn.click();
-      }
-    });
+    // Автоматическая вставка текущего года в футер
+    document.querySelector('[data-copyright-year]').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
