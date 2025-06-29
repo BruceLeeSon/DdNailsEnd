@@ -40,8 +40,13 @@ header {
   z-index: 50;
 }
 
+nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
 nav a {
-  margin-left: 1.5rem;
   text-decoration: none;
   color: var(--button-text);
   font-weight: 600;
@@ -52,6 +57,9 @@ nav a {
   transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
   white-space: nowrap;
   user-select: none;
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
 }
 
 nav a:hover,
@@ -62,7 +70,6 @@ nav a:focus {
   color: var(--button-text);
 }
 
-/* Логотип с аккуратным блеском (только золотой) */
 .logo {
   font-size: 2rem;
   font-weight: 800;
@@ -160,7 +167,6 @@ nav a:focus {
 .card:hover {
   transform: translateY(-8px);
   box-shadow: 0 0 18px var(--accent-color);
-  /* background не меняем чтобы не было затемнения */
 }
 
 .image {
@@ -221,7 +227,6 @@ nav a:focus {
   transform: translateY(0);
 }
 
-/* Кнопка переключения темы с анимацией */
 .theme-toggle {
   position: fixed;
   bottom: 1rem;
@@ -251,7 +256,6 @@ nav a:focus {
   50% { box-shadow: 0 0 30px var(--accent-color); }
 }
 
-/* Модалка карточек */
 .popup {
   position: fixed;
   top: 0;
@@ -322,7 +326,6 @@ nav a:focus {
   display: none;
 }
 
-/* Кастомный скроллбар */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -335,9 +338,42 @@ nav a:focus {
 }
 
 @media (max-width: 600px) {
+  nav {
+    gap: 0.7rem;
+  }
   nav a {
-    margin-left: 1rem;
-    padding: 0.5rem 1rem;
+    margin-left: 0;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.95rem;
+    min-width: 70px;
+  }
+
+  .intro {
+    padding: 4rem 1rem 2rem;
+  }
+  .title {
+    font-size: 2.25rem;
+  }
+  .subtitle {
     font-size: 1rem;
+  }
+  .section {
+    padding: 2rem 1rem 3rem;
+  }
+  .heading {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .cards {
+    gap: 1rem;
+  }
+  .card {
+    max-width: 100%;
+    flex: 1 1 100%;
+    padding: 1rem;
+  }
+  .gallery-img {
+    max-width: 100%;
+    height: 150px;
   }
 }
