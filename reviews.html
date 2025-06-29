@@ -4,22 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Reviews - D&D Nails</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.23/bundled/lenis.min.js"></script>
-  <link href ="reviews.css" rel="stylesheet">
-
+  <link href="reviews.css" rel="stylesheet" />
 </head>
 <body>
 
 <header>
-  <a href="index.html" class="logo-link">D&amp;D Nails</a>
+  <a href="index.html" class="logo shine">D&amp;D Nails</a>
   <nav>
-    <a href="contacts.html">Contact</a>
+    <a href="index.html" class="btn">Home</a>
+    <a href="contacts.html" class="btn">Contact</a>
   </nav>
 </header>
 
 <main>
-  <h1 style="color:#FFD700; font-size:2rem; margin-bottom:2rem;">Customer Reviews</h1>
+  <h1 class="title">Customer Reviews</h1>
 
   <div class="review-card fadeUp1">
     <div class="review-stars">★★★★★</div>
@@ -41,17 +39,22 @@
 </main>
 
 <script>
-  const lenis = new Lenis({
-    lerp: 0.15,
-    smoothWheel: true,
-    wheelMultiplier: 0.7,
-    smoothTouch: true,
-  });
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
+  const fadeEls = document.querySelectorAll('.fadeUp1, .fadeUp2, .fadeUp3');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  const theme = localStorage.getItem('theme');
+  if (theme === 'light') {
+    document.body.classList.add('light');
   }
-  requestAnimationFrame(raf);
 </script>
 
 </body>

@@ -1,107 +1,210 @@
+/* Общие стили - темная тема */
+
 body {
-      background-color: #1a1a1a;
-      color: #f7e7b3;
-      font-family: sans-serif;
-      margin: 0; padding: 0;
-    }
-    header {
-      background-color: #111;
-      padding: 1rem 2rem;
-      position: fixed;
-      width: 100%;
-      top: 0; left: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.7);
-    }
-    header a.logo-link {
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: #FFD700;
-      position: relative;
-      user-select: none;
-      transition: filter 0.7s ease;
-      text-decoration: none;
-    }
-    header a.logo-link::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.7), transparent);
-      transform: skewX(-25deg);
-      transition: left 0.7s ease;
-      pointer-events: none;
-    }
-    header a.logo-link:hover::before {
-      left: 125%;
-      transition: left 0.7s ease;
-    }
-    nav a {
-      color: #FFD700;
-      font-weight: 700;
-      text-decoration: none;
-      user-select: none;
-    }
-    main {
-      max-width: 800px;
-      margin: 120px auto 2rem;
-      padding: 0 1rem;
-      text-align: center;
-    }
-    .review-card {
-      background: #222;
-      border-radius: 1rem;
-      padding: 1.5rem 2rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-      opacity: 0;
-      transform: translateY(40px);
-      animation-fill-mode: forwards;
-      animation-timing-function: ease-out;
-    }
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .fadeUp1 {
-      animation-name: fadeUp;
-      animation-duration: 1s;
-      animation-delay: 0.3s;
-    }
-    .fadeUp2 {
-      animation-name: fadeUp;
-      animation-duration: 1s;
-      animation-delay: 0.6s;
-    }
-    .fadeUp3 {
-      animation-name: fadeUp;
-      animation-duration: 1s;
-      animation-delay: 0.9s;
-    }
-    .review-stars {
-      color: #FFD700;
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-      user-select: none;
-    }
-    .reviewer-name {
-      font-weight: 700;
-      margin-bottom: 0.7rem;
-      color: #f7e7b3;
-    }
-    .review-text {
-      font-style: italic;
-      color: #d7cfae;
-      line-height: 1.5;
-    }
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #1a1a1a;
+  color: #f7e7b3;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+header {
+  background-color: #111;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Логотип — цвет, анимация блеска */
+
+.logo {
+  color: #FFD700;
+  font-weight: bold;
+  font-size: 1.4rem;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.logo.shine:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #ffd700;
+}
+
+.logo.shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.7), transparent);
+  transform: skewX(-25deg);
+  pointer-events: none;
+}
+
+.logo.shine:hover::before {
+  animation: shine 1s forwards;
+}
+
+@keyframes shine {
+  to {
+    left: 125%;
+  }
+}
+
+/* Навигационные кнопки - фон и скругление точь-в-точь как на главной */
+
+nav a.btn {
+  background-color: #FFD700;
+  color: #1a1a1a;
+  padding: 0.5rem 1.2rem;
+  border-radius: 24px;
+  font-weight: 600;
+  margin-left: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: inline-block;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+nav a.btn:hover {
+  background-color: #e6c200;
+  color: #000;
+}
+
+/* Основной заголовок */
+
+.title {
+  color: #FFD700;
+  font-size: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  text-align: center;
+}
+
+/* Карточки отзывов */
+
+.review-card {
+  background-color: #222;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin: 1.5rem auto;
+  max-width: 800px;
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  color: #f7e7b3;
+}
+
+.review-card:hover {
+  background-color: #333;
+  box-shadow: 0 12px 30px rgba(255, 215, 0, 0.5);
+}
+
+.review-stars {
+  color: #FFD700;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 5px #ffd70099;
+}
+
+.reviewer-name {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #f7e7b3;
+}
+
+.review-text {
+  color: #d7cfae;
+  line-height: 1.4;
+}
+
+/* Анимации fadeUp */
+.fadeUp1, .fadeUp2, .fadeUp3 {
+  opacity: 0;
+  transform: translateY(20px);
+  animation-fill-mode: forwards;
+}
+.fadeUp1.visible {
+  animation: fadeUp 0.5s ease forwards 0.3s;
+}
+.fadeUp2.visible {
+  animation: fadeUp 0.5s ease forwards 0.6s;
+}
+.fadeUp3.visible {
+  animation: fadeUp 0.5s ease forwards 0.9s;
+}
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Светлая тема */
+
+body.light {
+  background-color: #fef9f0;
+  color: #4a3c00;
+}
+
+body.light header {
+  background-color: #f0e8d0;
+}
+
+body.light .logo {
+  color: #b37f00;
+}
+
+body.light .logo.shine:hover {
+  color: #4a3c00;
+  text-shadow: none;
+}
+
+body.light nav a.btn {
+  background-color: #b37f00;
+  color: #fef9f0;
+}
+
+body.light nav a.btn:hover {
+  background-color: #7f5c00;
+  color: #fff;
+}
+
+body.light .title {
+  color: #b37f00;
+}
+
+body.light .review-card {
+  background-color: #fff8dc;
+  box-shadow: 0 8px 20px rgba(179, 127, 0, 0.3);
+  color: #4a3c00;
+}
+
+body.light .review-card:hover {
+  background-color: #f5e7a3;
+  box-shadow: 0 12px 30px rgba(179, 127, 0, 0.5);
+}
+
+body.light .review-stars {
+  color: #b37f00;
+  text-shadow: none;
+}
+
+body.light .reviewer-name {
+  color: #4a3c00;
+}
+
+body.light .review-text {
+  color: #6b5c18;
+}
